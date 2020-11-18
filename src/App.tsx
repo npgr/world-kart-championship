@@ -22,7 +22,7 @@ const LoadingScreen = () => {
 function App() {
   const [translations, setTranslations] = useState(null);
 
-  const xloading = () => {
+  const loading = () => {
     return !translations;
   };
 
