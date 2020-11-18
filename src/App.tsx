@@ -1,25 +1,54 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React, { lazy, Suspense, useEffect, useState } from "react";
+import { Switch, Route } from "react-router-dom";
+import { CircularProgress, Backdrop } from "@material-ui/core";
+import { IntlProvider } from "react-intl";
+import flatten from "flat";
+
+import ROUTES from "./routes";
+import { Header } from "./components";
+import { DEFAULT_LANGUAGE_CODE } from "./utils/constants";
+
+const HomePage = lazy(() => import("./pages/Home"));
+const NotFound = lazy(() => import("./pages/NotFound"));
+
+const LoadingScreen = () => {
+  return (
+    <Backdrop open invisible>
+      <CircularProgress color="secondary" />
+    </Backdrop>
+  );
+};
 
 function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+  const [translations, setTranslations] = useState(null);
+
+  const xloading = () => {
+    return !translations;
+  };
+
+  useEffect(() => {
+    import(`./translations/${DEFAULT_LANGUAGE_CODE}`).then((translations) => {
+      setTranslations(translations);
+    });
+  }, []);
+
+  return loading() ? (
+    <LoadingScreen />
+  ) : (
+    <IntlProvider
+      locale={DEFAULT_LANGUAGE_CODE}
+      messages={flatten(translations)}
+    >
+      <Header />
+      <main className="app">
+        <Suspense fallback={LoadingScreen()}>
+          <Switch>
+            <Route exact path={ROUTES.HOME} component={HomePage} />
+            <Route component={NotFound} />
+          </Switch>
+        </Suspense>
+      </main>
+    </IntlProvider>
   );
 }
 
