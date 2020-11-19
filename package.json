@@ -47,12 +47,6 @@
       "react-app/jest"
     ]
   },
-  "husky": {
-    "hooks": {
-      "pre-commit": "npm run code:lint",
-      "pre-push": "npm run test:coverage"
-    }
-  },
   "jest": {
     "collectCoverageFrom": [
       "src/**/*.{ts,tsx}",
