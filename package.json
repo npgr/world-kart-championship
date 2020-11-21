@@ -32,7 +32,7 @@
   },
   "scripts": {
     "start": "react-scripts start",
-    "start:local": "concurrently --kill-others-on-fail \"yarn server\" \"react-scripts start\"",
+    "start:local": "set REACT_APP_ENV=local && concurrently --kill-others-on-fail \"yarn server\" \"react-scripts start\"",
     "server": "cd server && yarn start",
     "build": "react-scripts build",
     "build:dev": "react-scripts build",
