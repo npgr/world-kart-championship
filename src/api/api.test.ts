@@ -14,20 +14,18 @@ describe("API tests", () => {
     jest.resetAllMocks();
   });
 
-  // Delete: example code
-  describe("Prueba API", () => {
-    test("should return user data on getPrueba() with all parameters", async () => {
-      const MOCK_USER_ID = 99;
-      const MOCK_PARAMS = { userId: MOCK_USER_ID };
+  describe("Drivers API", () => {
+    test("should return drivers data on getDrivers()", async () => {
 
-      const EXPECTED_DATA = { data: "OK" };
-      const EXPECTED_CALL = `prueba/?user=${MOCK_USER_ID}`;
+
+      const EXPECTED_DATA = ['driver1'];
+      const EXPECTED_CALL = 'drivers/';
 
       mockedAxios.get.mockResolvedValueOnce({
         data: EXPECTED_DATA,
       });
 
-      expect(await api.getPrueba(MOCK_PARAMS)).toEqual({
+      expect(await api.getDrivers()).toEqual({
         data: EXPECTED_DATA,
       });
 

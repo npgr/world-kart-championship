@@ -1,17 +1,14 @@
 import axios, { AxiosStatic } from "axios";
-import { getApiUrl } from "./api.helpers";
-import { IGetUserParams } from "./api.d";
 
 export class API {
   http: AxiosStatic;
   constructor() {
     this.http = axios;
-    this.http.defaults.baseURL = getApiUrl();
+    this.http.defaults.baseURL = 'http://localhost:5000/api/'
   }
 
-  // Delete: example code
-  public getPrueba = (params: IGetUserParams) => {
-    return axios.get(`prueba/?user=${params.userId}`);
+  public getDrivers = () => {
+    return this.http.get('drivers/');
   };
 }
 
