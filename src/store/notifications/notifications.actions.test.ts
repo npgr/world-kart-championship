@@ -1,10 +1,10 @@
-import configureMockStore from "redux-mock-store";
-import { addNotification, removeNotification } from "./notifications.actions";
-import { NOTIFICATIONS_REDUX_TYPES } from "./notifications.types";
-import thunk from "redux-thunk";
-import { INITIAL_STATE, NOTIFICATION_TYPES } from "./notifications.reducer";
+import configureMockStore from 'redux-mock-store';
+import { addNotification, removeNotification } from './notifications.actions';
+import { NOTIFICATIONS_REDUX_TYPES } from './notifications.types';
+import thunk from 'redux-thunk';
+import { INITIAL_STATE, NOTIFICATION_TYPES } from './notifications.reducer';
 
-describe("Notifications actions", () => {
+describe('Notifications actions', () => {
   let store: any;
   const mockStore = configureMockStore([thunk]);
 
@@ -12,9 +12,9 @@ describe("Notifications actions", () => {
     store = mockStore(INITIAL_STATE);
   });
 
-  test("should dispatch data action to add notification", async () => {
+  test('should dispatch data action to add notification', async () => {
     const MOCK_TYPE_NOTIFICATION = NOTIFICATION_TYPES.SUCCESS;
-    const MOCK_TEXT_NOTIFICATION = "mock text";
+    const MOCK_TEXT_NOTIFICATION = 'mock text';
     const MOCK_VALUES_NOTIFICATION = { mockValue: 1 };
 
     const EXPECTED_ACTIONS = [
@@ -38,7 +38,7 @@ describe("Notifications actions", () => {
     expect(actualActions).toEqual(EXPECTED_ACTIONS);
   });
 
-  test("should dispatch data action to remove Notification", async () => {
+  test('should dispatch data action to remove Notification', async () => {
     const MOCK_NOTIFICATION_INDEX = 2;
     const EXPECTED_ACTIONS = [
       {

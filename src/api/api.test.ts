@@ -1,9 +1,9 @@
-import axios, { AxiosStatic } from "axios";
-import api from "./api";
+import axios, { AxiosStatic } from 'axios';
+import api from './api';
 
-jest.mock("axios");
+jest.mock('axios');
 
-describe("API tests", () => {
+describe('API tests', () => {
   let mockedAxios: jest.Mocked<AxiosStatic>;
 
   beforeEach(() => {
@@ -14,10 +14,8 @@ describe("API tests", () => {
     jest.resetAllMocks();
   });
 
-  describe("Drivers API", () => {
-    test("should return drivers data on getDrivers()", async () => {
-
-
+  describe('Drivers API', () => {
+    test('should return drivers data on getDrivers()', async () => {
       const EXPECTED_DATA = ['driver1'];
       const EXPECTED_CALL = 'drivers/';
 

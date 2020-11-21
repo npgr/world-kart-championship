@@ -1,11 +1,11 @@
-import { AnyAction } from "redux";
-import { NOTIFICATIONS_REDUX_TYPES } from "./notifications.types";
+import { AnyAction } from 'redux';
+import { NOTIFICATIONS_REDUX_TYPES } from './notifications.types';
 
 export enum NOTIFICATION_TYPES {
-  SUCCESS = "success",
-  WARNING = "warning",
-  ERROR = "error",
-  INFO = "info",
+  SUCCESS = 'success',
+  WARNING = 'warning',
+  ERROR = 'error',
+  INFO = 'info',
 }
 
 export interface INotification {

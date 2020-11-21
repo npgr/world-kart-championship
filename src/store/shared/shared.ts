@@ -1,6 +1,6 @@
-import thunk, { ThunkDispatch } from "redux-thunk";
-import configureStore from "redux-mock-store";
-import { AxiosResponse } from "axios";
+import thunk, { ThunkDispatch } from 'redux-thunk';
+import configureStore from 'redux-mock-store';
+import { AxiosResponse } from 'axios';
 
 export const mockStoreRedux = (initialState: object) => {
   const mockStore = configureStore([thunk]);
@@ -16,11 +16,11 @@ export function hasOwnProperty(obj: any, propertyName: string): boolean {
 type getErrorMessageType = (field: string, objectName: string) => string;
 
 export type DataType =
-  | "string"
-  | "number"
-  | "object"
-  | "boolean"
-  | "array"
+  | 'string'
+  | 'number'
+  | 'object'
+  | 'boolean'
+  | 'array'
   | string;
 
 export type DataTypeConfig = {
@@ -32,12 +32,12 @@ const isValidDataType = (
   fieldType: string | DataTypeConfig,
   fieldValue: any
 ) => {
-  let type = typeof fieldType === "object" ? fieldType.type : fieldType;
-  let allowNull = typeof fieldType === "object" ? fieldType.allowNull : false;
+  let type = typeof fieldType === 'object' ? fieldType.type : fieldType;
+  let allowNull = typeof fieldType === 'object' ? fieldType.allowNull : false;
 
   return (
     type.includes(typeof fieldValue) ||
-    (type === "array" && Array.isArray(fieldValue)) ||
+    (type === 'array' && Array.isArray(fieldValue)) ||
     (allowNull && fieldValue === null)
   );
 };
@@ -49,7 +49,7 @@ export function validateResponseItem(
   },
   getErrorMessage: getErrorMessageType,
   getErrorTypeMessage: getErrorMessageType,
-  objectName = ""
+  objectName = ''
 ) {
   const fieldsNames = Object.keys(fields);
   fieldsNames.forEach((fieldName) => {

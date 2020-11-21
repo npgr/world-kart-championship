@@ -1,9 +1,5 @@
-import {Driver} from './Driver'
-import {DriverRace} from './DriverRace'
-import {Race} from './Race' 
+import { Driver } from './Driver';
+import { DriverRace } from './DriverRace';
+import { Race } from './Race';
 
-export {
-    Driver,
-    DriverRace,
-    Race
-}
+export { Driver, DriverRace, Race };

@@ -1,4 +1,4 @@
-import { NOTIFICATIONS_REDUX_TYPES } from "./notifications.types";
+import { NOTIFICATIONS_REDUX_TYPES } from './notifications.types';
 
 export const addNotification = (
   type: string,

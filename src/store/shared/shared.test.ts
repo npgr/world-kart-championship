@@ -1,17 +1,17 @@
-import thunk from "redux-thunk";
-import axios, { AxiosStatic } from "axios";
-import configureMockStore from "redux-mock-store";
+import thunk from 'redux-thunk';
+import axios, { AxiosStatic } from 'axios';
+import configureMockStore from 'redux-mock-store';
 import {
   apiCallRedux,
   IApiCallReduxParams,
   mockStoreRedux,
   validateResponseItem,
   DataType,
-} from "./shared";
+} from './shared';
 
-jest.mock("axios");
+jest.mock('axios');
 
-describe("Redux shared", () => {
+describe('Redux shared', () => {
   let mockedAxios: jest.Mocked<AxiosStatic>;
   const mockStore = configureMockStore([thunk]);
   let store: any;
@@ -21,17 +21,17 @@ describe("Redux shared", () => {
     store = mockStore({});
   });
 
-  test("mockStoreRedux(initialState) -> redux store", () => {
-    const MOCK_INITIAL_STATE = { state: "the initial state" };
+  test('mockStoreRedux(initialState) -> redux store', () => {
+    const MOCK_INITIAL_STATE = { state: 'the initial state' };
     const mockedStore = mockStoreRedux(MOCK_INITIAL_STATE);
 
     expect(mockedStore.getState()).toBe(MOCK_INITIAL_STATE);
   });
 
-  test("apiCallRedux(...) actions and api call on success", async () => {
-    const MOCK_API_URL = "/test/success/url";
-    const MOCK_ACTION = "TEST_ACTION";
-    const MOCK_DATA = "the mock data";
+  test('apiCallRedux(...) actions and api call on success', async () => {
+    const MOCK_API_URL = '/test/success/url';
+    const MOCK_ACTION = 'TEST_ACTION';
+    const MOCK_DATA = 'the mock data';
     const EXPECTED_ACTIONS = [
       { type: `${MOCK_ACTION}_START` },
       { type: `${MOCK_ACTION}_SUCCESS`, payload: MOCK_DATA },
@@ -55,10 +55,10 @@ describe("Redux shared", () => {
     expect(EXPECTED_ACTIONS).toEqual(actualActions);
   });
 
-  test("apiCallRedux(...) actions and api call on success with builder", async () => {
-    const MOCK_API_URL = "/test/success/url";
-    const MOCK_ACTION = "TEST_ACTION";
-    const MOCK_BUILDER_DATA = { data: "success" };
+  test('apiCallRedux(...) actions and api call on success with builder', async () => {
+    const MOCK_API_URL = '/test/success/url';
+    const MOCK_ACTION = 'TEST_ACTION';
+    const MOCK_BUILDER_DATA = { data: 'success' };
     const MOCK_DATA = { object1: MOCK_BUILDER_DATA };
     const MOCK_BUILDER_FUNCTION = (data: any) => data.object1;
     const EXPECTED_ACTIONS = [
@@ -84,11 +84,11 @@ describe("Redux shared", () => {
     expect(EXPECTED_ACTIONS).toEqual(actualActions);
   });
 
-  test("apiCallRedux(...) actions and api call on failure", async () => {
-    const MOCK_API_URL = "/test/error/url";
-    const MOCK_ACTION = "TEST_ACTION";
+  test('apiCallRedux(...) actions and api call on failure', async () => {
+    const MOCK_API_URL = '/test/error/url';
+    const MOCK_ACTION = 'TEST_ACTION';
     const MOCK_ERROR = {
-      message: "the mock error",
+      message: 'the mock error',
     };
     const EXPECTED_ACTIONS = [
       { type: `${MOCK_ACTION}_START` },
@@ -111,10 +111,10 @@ describe("Redux shared", () => {
     expect(EXPECTED_ACTIONS).toEqual(actualActions);
   });
 
-  describe("validateItemResponse()", () => {
-    test("should not throw errors when data structure is valid", () => {
+  describe('validateItemResponse()', () => {
+    test('should not throw errors when data structure is valid', () => {
       const MOCK_ITEM = {
-        field1: "value 1",
+        field1: 'value 1',
         field2: 99,
         field3: [],
         field4: true,
@@ -122,12 +122,12 @@ describe("Redux shared", () => {
         field6: 6.5,
       };
       const MOCK_FIELDS: { [key: string]: DataType } = {
-        field1: "string",
-        field2: "number",
-        field3: "array",
-        field4: "boolean",
-        field5: "object",
-        field6: "number",
+        field1: 'string',
+        field2: 'number',
+        field3: 'array',
+        field4: 'boolean',
+        field5: 'object',
+        field6: 'number',
       };
       const MOCK_ERROR_FUNCTION = (field: string, objectName: string) =>
         `error ${objectName}${field}`;
@@ -142,14 +142,14 @@ describe("Redux shared", () => {
       ).not.toThrowError();
     });
 
-    test("should allow to validate null value on properties", () => {
+    test('should allow to validate null value on properties', () => {
       const MOCK_ITEM = {
         field1: null,
       };
       const MOCK_FIELDS: {
         [key: string]: { type: string; allowNull: boolean };
       } = {
-        field1: { type: "array", allowNull: true },
+        field1: { type: 'array', allowNull: true },
       };
       const MOCK_ERROR_FUNCTION = (field: string, objectName: string) =>
         `error ${objectName}${field}`;
@@ -164,12 +164,12 @@ describe("Redux shared", () => {
       ).not.toThrowError();
     });
 
-    test("should throw error when field could not have null value and data value is null", () => {
+    test('should throw error when field could not have null value and data value is null', () => {
       const MOCK_ITEM = {
         field1: null,
       };
       const MOCK_FIELDS = {
-        field1: { type: "array", allowNull: false },
+        field1: { type: 'array', allowNull: false },
       };
       const MOCK_ERROR_FUNCTION = (field: string, objectName: string) =>
         `error ${objectName}${field}`;
@@ -184,17 +184,17 @@ describe("Redux shared", () => {
       ).toThrowError();
     });
 
-    test("should throw error when missing field in data", () => {
+    test('should throw error when missing field in data', () => {
       const MOCK_ITEM = {
-        field1: "value 1",
+        field1: 'value 1',
       };
       const MOCK_FIELDS = {
-        field1: "string",
-        field2: { type: "number" },
+        field1: 'string',
+        field2: { type: 'number' },
       };
       const MOCK_ERROR_FUNCTION = (field: string, objectName: string) =>
         `error missing field: ${objectName}${field}`;
-      const EXPECTED_RESPONSE = "error missing field: field2";
+      const EXPECTED_RESPONSE = 'error missing field: field2';
 
       expect(() =>
         validateResponseItem(
@@ -206,16 +206,16 @@ describe("Redux shared", () => {
       ).toThrowError(EXPECTED_RESPONSE);
     });
 
-    test("should throw error when field type is invalid in data", () => {
+    test('should throw error when field type is invalid in data', () => {
       const MOCK_ITEM = {
-        field1: "value 1",
+        field1: 'value 1',
       };
       const MOCK_FIELDS = {
-        field1: "number",
+        field1: 'number',
       };
       const MOCK_ERROR_FUNCTION = (field: string, objectName: string) =>
         `error invalid type on field: ${objectName}${field}`;
-      const EXPECTED_RESPONSE = "error invalid type on field: field1";
+      const EXPECTED_RESPONSE = 'error invalid type on field: field1';
 
       expect(() =>
         validateResponseItem(
@@ -227,16 +227,16 @@ describe("Redux shared", () => {
       ).toThrowError(EXPECTED_RESPONSE);
     });
 
-    test("should throw error when field type is invalid in data and allows null", () => {
+    test('should throw error when field type is invalid in data and allows null', () => {
       const MOCK_ITEM = {
-        field1: "value 1",
+        field1: 'value 1',
       };
       const MOCK_FIELDS = {
-        field1: { type: "number", allowNull: true },
+        field1: { type: 'number', allowNull: true },
       };
       const MOCK_ERROR_FUNCTION = (field: string, objectName: string) =>
         `error invalid type on field: ${objectName}${field}`;
-      const EXPECTED_RESPONSE = "error invalid type on field: field1";
+      const EXPECTED_RESPONSE = 'error invalid type on field: field1';
 
       expect(() =>
         validateResponseItem(
@@ -248,16 +248,16 @@ describe("Redux shared", () => {
       ).toThrowError(EXPECTED_RESPONSE);
     });
 
-    test("should throw error when field type is invalid in data and does not allow null", () => {
+    test('should throw error when field type is invalid in data and does not allow null', () => {
       const MOCK_ITEM = {
-        field1: "value 1",
+        field1: 'value 1',
       };
       const MOCK_FIELDS = {
-        field1: { type: "number", allowNull: false },
+        field1: { type: 'number', allowNull: false },
       };
       const MOCK_ERROR_FUNCTION = (field: string, objectName: string) =>
         `error invalid type on field: ${objectName}${field}`;
-      const EXPECTED_RESPONSE = "error invalid type on field: field1";
+      const EXPECTED_RESPONSE = 'error invalid type on field: field1';
 
       expect(() =>
         validateResponseItem(

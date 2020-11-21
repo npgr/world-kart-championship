@@ -1,12 +1,12 @@
-import React from "react";
-import { render as rtlRender, RenderOptions } from "@testing-library/react";
-import { IntlProvider } from "react-intl";
-import { ThemeProvider } from "styled-components";
-import flatten from "flat";
+import React from 'react';
+import { render as rtlRender, RenderOptions } from '@testing-library/react';
+import { IntlProvider } from 'react-intl';
+import { ThemeProvider } from 'styled-components';
+import flatten from 'flat';
 
-import translations from "../translations/en.json";
-import { DEFAULT_LANGUAGE_CODE } from "./constants";
-import theme from "../theme";
+import translations from '../translations/en.json';
+import { DEFAULT_LANGUAGE_CODE } from './constants';
+import theme from '../theme';
 
 export function renderWithIntl(
   ui: React.ReactElement,

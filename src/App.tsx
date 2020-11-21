@@ -1,15 +1,15 @@
-import React, { lazy, Suspense, useEffect, useState } from "react";
-import { Switch, Route } from "react-router-dom";
-import { CircularProgress, Backdrop } from "@material-ui/core";
-import { IntlProvider } from "react-intl";
-import flatten from "flat";
+import React, { lazy, Suspense, useEffect, useState } from 'react';
+import { Switch, Route } from 'react-router-dom';
+import { CircularProgress, Backdrop } from '@material-ui/core';
+import { IntlProvider } from 'react-intl';
+import flatten from 'flat';
 
-import ROUTES from "./routes";
-import { Header } from "./components";
-import { DEFAULT_LANGUAGE_CODE } from "./utils/constants";
+import ROUTES from './routes';
+import { Header } from './components';
+import { DEFAULT_LANGUAGE_CODE } from './utils/constants';
 
-const HomePage = lazy(() => import("./pages/Home"));
-const NotFound = lazy(() => import("./pages/NotFound"));
+const Drivers = lazy(() => import('./pages/Drivers'));
+const NotFound = lazy(() => import('./pages/NotFound'));
 
 const LoadingScreen = () => {
   return (
@@ -43,7 +43,7 @@ function App() {
       <main className="app">
         <Suspense fallback={LoadingScreen()}>
           <Switch>
-            <Route exact path={ROUTES.HOME} component={HomePage} />
+            <Route exact path={ROUTES.HOME} component={Drivers} />
             <Route component={NotFound} />
           </Switch>
         </Suspense>
