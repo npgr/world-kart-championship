@@ -1,36 +1,37 @@
 import { AnyAction } from 'redux';
 import { DRIVERS_TYPES } from './drivers.types';
 import { Driver, Race, DriverRace } from '../../models';
+import { ApiIndicator } from '../shared';
 
 export interface IDriversState {
   drivers: Driver[];
   races: Race[];
   driversRaces: DriverRace[];
-  isLoading: boolean;
+  isLoading: ApiIndicator;
 }
 
 export const INITIAL_STATE: IDriversState = {
   drivers: [],
   races: [],
   driversRaces: [],
-  isLoading: false,
+  isLoading: ApiIndicator.Empty,
 };
 
 const getDriversStart = (state: any, { payload }: AnyAction) => ({
   ...state,
   drivers: [],
-  isLoading: true,
+  isLoading: ApiIndicator.Start,
 });
 
 const getDriversSuccess = (state: any, { payload }: AnyAction) => ({
   ...state,
-  drivers: payload,
-  isLoading: false,
+  ...payload,
+  isLoading: ApiIndicator.Success,
 });
 
 const getDriversFailure = (state: any, { payload }: AnyAction) => ({
   ...state,
-  isLoading: false,
+  isLoading: ApiIndicator.Failure,
 });
 
 const reducerMap = {
