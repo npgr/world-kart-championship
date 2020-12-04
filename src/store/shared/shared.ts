@@ -2,6 +2,13 @@ import thunk, { ThunkDispatch } from 'redux-thunk';
 import configureStore from 'redux-mock-store';
 import { AxiosResponse } from 'axios';
 
+export enum ApiIndicator {
+  Empty = '',
+  Start = 'start',
+  Success = 'success',
+  Failure = 'failure',
+}
+
 export const mockStoreRedux = (initialState: object) => {
   const mockStore = configureStore([thunk]);
   return mockStore(initialState);
