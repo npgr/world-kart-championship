@@ -12,14 +12,20 @@ export const selectDrivers = createSelector(
   ({ drivers }) => drivers
 );
 
+export const selectDriver = createSelector(
+  [driverStateSelector],
+  ({ drivers }) => (id: string) => drivers.find((driver) => driver.id === id)
+);
+
 export const selectRaces = createSelector(
   [driverStateSelector],
   ({ races }) => races
 );
 
-export const selectDriversRaces = createSelector(
+export const selectDriverRaces = createSelector(
   [driverStateSelector],
-  ({ driversRaces }) => driversRaces
+  ({ driversRaces }) => (driverId: string) =>
+    driversRaces.filter((race) => race.driverId === driverId)
 );
 
 export const selectIsLoading = createSelector(
