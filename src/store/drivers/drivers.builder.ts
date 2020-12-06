@@ -32,7 +32,7 @@ export const driversBuilder = (data: DriversResponse[]) => {
       }
       driversInit = [
         ...driversInit,
-        { id, picture, age, name, team, totalPoints: 0 },
+        { id, picture, age, name, team, position: 0, totalPoints: 0 },
       ];
       driversRacesInit = [
         ...driversRacesInit,
@@ -41,7 +41,8 @@ export const driversBuilder = (data: DriversResponse[]) => {
           raceId: getRaceIdFromName(name),
           time: time,
           milliseconds: convertToMiliseconds(time),
-          position: 0,
+          racePosition: 0,
+          generalPosition: 0,
           points: 0,
           accumulatedPoints: 0,
         })),
@@ -58,8 +59,23 @@ export const driversBuilder = (data: DriversResponse[]) => {
       .map((race, index) => ({
         ...race,
         ...getPoints(race.driverId, index + 1),
-        position: index + 1,
-      }));
+        racePosition: index + 1,
+      }))
+      .sort(function (raceDriver1, raceDriver2) {
+        return raceDriver2.accumulatedPoints - raceDriver1.accumulatedPoints;
+      });
+
+    let position = 0;
+    let prevPoints = 0;
+
+    oneRace.forEach((race, index) => {
+      if (race.accumulatedPoints !== prevPoints) {
+        prevPoints = race.accumulatedPoints;
+        position = index + 1;
+      }
+      race.generalPosition = position;
+    });
+
     driversRaces = [...driversRaces, ...oneRace];
   });
 
@@ -71,6 +87,17 @@ export const driversBuilder = (data: DriversResponse[]) => {
     .sort(function (driver1, driver2) {
       return driver2.totalPoints - driver1.totalPoints;
     });
+
+  let position = 0;
+  let prevPoints = 0;
+
+  drivers.forEach((driver, index) => {
+    if (driver.totalPoints !== prevPoints) {
+      prevPoints = driver.totalPoints;
+      position = index + 1;
+    }
+    driver.position = position;
+  });
 
   return { drivers, races, driversRaces };
 };

@@ -5,6 +5,7 @@ export class Driver {
     public age: number,
     public name: string,
     public team: string,
+    public position: number,
     public totalPoints: number
   ) {}
 }

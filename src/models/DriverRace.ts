@@ -4,8 +4,9 @@ export class DriverRace {
     public raceId: string,
     public time: string,
     public milliseconds: number,
-    public position: number,
+    public racePosition: number,
     public points: number,
-    public accumulatedPoints: number
+    public accumulatedPoints: number,
+    public generalPosition: number
   ) {}
 }
