@@ -63,10 +63,14 @@ export const driversBuilder = (data: DriversResponse[]) => {
     driversRaces = [...driversRaces, ...oneRace];
   });
 
-  drivers = driversInit.map((driver) => ({
-    ...driver,
-    totalPoints: accumulatedPoints[driver.id],
-  }));
+  drivers = driversInit
+    .map((driver) => ({
+      ...driver,
+      totalPoints: accumulatedPoints[driver.id],
+    }))
+    .sort(function (driver1, driver2) {
+      return driver2.totalPoints - driver1.totalPoints;
+    });
 
   return { drivers, races, driversRaces };
 };
