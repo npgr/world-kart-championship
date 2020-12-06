@@ -1,8 +1,11 @@
 {
   "common": {
-
   },
-  "pages": {
-    "home": "home"
+  "driver": {
+    "age": "Age",
+    "name": "Name",
+    "points": "Points",
+    "position": "Position",
+    "team": "Team"
   }
 }
