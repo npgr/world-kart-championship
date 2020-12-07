@@ -3,7 +3,7 @@ import { CircularProgress, Backdrop } from '@material-ui/core';
 
 const LoadingScreen = () => {
   return (
-    <Backdrop open invisible>
+    <Backdrop data-testid="loading-screen" open invisible>
       <CircularProgress color="secondary" />
     </Backdrop>
   );

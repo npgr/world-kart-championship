@@ -10,39 +10,40 @@ import ROUTES from './routes';
 import App from './App';
 
 describe('App', () => {
-  let store: any;
-
   const INITIAL_STATE = {
     driver: DRIVERS_INITIAL_STATE,
   };
   const history = createBrowserHistory();
 
-  beforeEach(() => {
-    store = mockStoreRedux(INITIAL_STATE);
-  });
-
-  const renderApp = () =>
-    render(
+  const renderApp = (initialState: object) => {
+    const store = { ...mockStoreRedux(initialState), dispatch: jest.fn() };
+    return render(
       <Provider store={store}>
         <Router history={history}>
           <App />
         </Router>
       </Provider>
     );
+  };
 
-  test('Not found page', async () => {
+  test('it should Not found page', async () => {
     history.push('nonexistent-url');
-    renderApp();
+    renderApp({});
 
     const lazyPageContent = await screen.findByText(/Not Found page/i);
     expect(lazyPageContent).toBeInTheDocument();
   });
 
-  test('Show Home page', async () => {
+  test('it should renders Home page', async () => {
     history.push(ROUTES.HOME);
-    renderApp();
+    renderApp({
+      drivers: INITIAL_STATE,
+    });
 
-    const lazyPageContent = await screen.findByText(/Drivers page/i);
+    const lazyPageContent = await screen.findByRole('heading', {
+      name: /Classification/i,
+    });
+
     expect(lazyPageContent).toBeInTheDocument();
   });
 });
