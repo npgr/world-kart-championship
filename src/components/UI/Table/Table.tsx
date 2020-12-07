@@ -23,7 +23,7 @@ const Table = ({ columns, rows, size = 'small' }: ITable) => {
   return (
     <TableContainer>
       <MUITable stickyHeader size={size}>
-        <TableHead>
+        <TableHead data-testid="table-head">
           <StyledTableRow>
             {columns.map((column: IColumn) => (
               <StyledTableCell key={column.id} variant="head">
@@ -32,10 +32,11 @@ const Table = ({ columns, rows, size = 'small' }: ITable) => {
             ))}
           </StyledTableRow>
         </TableHead>
-        <TableBody>
+        <TableBody data-testid="table-body">
           {rows.map((row: any) => {
             return (
               <StyledTableRow
+                data-testid="table-body-row"
                 hover
                 tabIndex={-1}
                 key={row.id}
