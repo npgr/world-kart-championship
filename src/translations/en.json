@@ -3,9 +3,16 @@
   },
   "driver": {
     "age": "Age",
+    "classification": "Classification",
     "name": "Name",
     "points": "Points",
-    "position": "Position",
+    "position": "Pos",
     "team": "Team"
+  },
+  "race": {
+    "race": "Race",
+    "time": "Time",
+    "position": "Position",
+    "points": "Points"
   }
 }
