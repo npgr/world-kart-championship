@@ -1,16 +1,6 @@
 import styled, { css } from 'styled-components';
-import TableHead from '@material-ui/core/TableHead';
 import TableRow from '@material-ui/core/TableRow';
-
-export const StyledTableHead = styled(TableHead)`
-  ${({ theme }) => css`
-    font-weight: bold;
-    th {
-      padding-top: 0.7rem;
-      padding-bottom: 0.7rem;
-    }
-  `}
-`;
+import TableCell from '@material-ui/core/TableCell';
 
 export const StyledTableRow = styled(TableRow)`
   ${({ onClick }) =>
@@ -18,4 +8,11 @@ export const StyledTableRow = styled(TableRow)`
     css`
       cursor: pointer;
     `}
+`;
+
+export const StyledTableCell = styled(TableCell)`
+  ${({ theme }) => css`
+    background-color: ${theme.palette.primary.light};
+    color: white;
+  `}
 `;
