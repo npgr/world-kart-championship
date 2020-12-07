@@ -12,7 +12,7 @@ describe('Notifications actions', () => {
     store = mockStore(INITIAL_STATE);
   });
 
-  test('should dispatch data action to add notification', async () => {
+  test('it should dispatch data action to add notification', async () => {
     const MOCK_TYPE_NOTIFICATION = NOTIFICATION_TYPES.SUCCESS;
     const MOCK_TEXT_NOTIFICATION = 'mock text';
     const MOCK_VALUES_NOTIFICATION = { mockValue: 1 };
@@ -38,7 +38,7 @@ describe('Notifications actions', () => {
     expect(actualActions).toEqual(EXPECTED_ACTIONS);
   });
 
-  test('should dispatch data action to remove Notification', async () => {
+  test('it should dispatch data action to remove Notification', async () => {
     const MOCK_NOTIFICATION_INDEX = 2;
     const EXPECTED_ACTIONS = [
       {

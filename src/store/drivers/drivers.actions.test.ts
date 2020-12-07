@@ -22,7 +22,7 @@ describe('getDrivers action', () => {
   const MOCK_DRIVERS_RESPONSE = driversResponseMockBuilder();
   const MOCK_DRIVERS_DATA = driversDataMockBuilder();
 
-  test('should dispatch data actions on success', async () => {
+  test('it should dispatch data actions on success', async () => {
     const EXPECTED_ACTIONS = [
       { type: 'GET_DRIVERS_START' },
       {
@@ -42,7 +42,7 @@ describe('getDrivers action', () => {
     expect(actualActions).toEqual(EXPECTED_ACTIONS);
   });
 
-  test('should dispatch failure actions on error', async () => {
+  test('it should dispatch failure actions on error', async () => {
     const MOCK_ERROR = { message: 'get drivers error' };
     const EXPECTED_ACTIONS = [
       { type: 'GET_DRIVERS_START' },

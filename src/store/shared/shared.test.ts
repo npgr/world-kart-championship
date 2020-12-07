@@ -112,7 +112,7 @@ describe('Redux shared', () => {
   });
 
   describe('validateItemResponse()', () => {
-    test('should not throw errors when data structure is valid', () => {
+    test('it should not throw errors when data structure is valid', () => {
       const MOCK_ITEM = {
         field1: 'value 1',
         field2: 99,
@@ -142,7 +142,7 @@ describe('Redux shared', () => {
       ).not.toThrowError();
     });
 
-    test('should allow to validate null value on properties', () => {
+    test('it should allow to validate null value on properties', () => {
       const MOCK_ITEM = {
         field1: null,
       };
@@ -164,7 +164,7 @@ describe('Redux shared', () => {
       ).not.toThrowError();
     });
 
-    test('should throw error when field could not have null value and data value is null', () => {
+    test('it should throw error when field could not have null value and data value is null', () => {
       const MOCK_ITEM = {
         field1: null,
       };
@@ -184,7 +184,7 @@ describe('Redux shared', () => {
       ).toThrowError();
     });
 
-    test('should throw error when missing field in data', () => {
+    test('it should throw error when missing field in data', () => {
       const MOCK_ITEM = {
         field1: 'value 1',
       };
@@ -206,7 +206,7 @@ describe('Redux shared', () => {
       ).toThrowError(EXPECTED_RESPONSE);
     });
 
-    test('should throw error when field type is invalid in data', () => {
+    test('it should throw error when field type is invalid in data', () => {
       const MOCK_ITEM = {
         field1: 'value 1',
       };
@@ -227,7 +227,7 @@ describe('Redux shared', () => {
       ).toThrowError(EXPECTED_RESPONSE);
     });
 
-    test('should throw error when field type is invalid in data and allows null', () => {
+    test('it should throw error when field type is invalid in data and allows null', () => {
       const MOCK_ITEM = {
         field1: 'value 1',
       };
@@ -248,7 +248,7 @@ describe('Redux shared', () => {
       ).toThrowError(EXPECTED_RESPONSE);
     });
 
-    test('should throw error when field type is invalid in data and does not allow null', () => {
+    test('it should throw error when field type is invalid in data and does not allow null', () => {
       const MOCK_ITEM = {
         field1: 'value 1',
       };
