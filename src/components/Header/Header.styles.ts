@@ -1,8 +1,11 @@
-import styled from 'styled-components';
+import styled, { css } from 'styled-components';
 import { AppBar, Typography } from '@material-ui/core';
 
 export const StyledAppBar = styled(AppBar)`
-  border-bottom: 1px solid ${({ theme }) => theme.palette.grey['300']};
+  ${({ theme }) => css`
+    background-color: ${theme.palette.primary.main};
+    color: white;
+  `}
 `;
 
 export const StyledTitle = styled(Typography)`

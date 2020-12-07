@@ -1,5 +1,4 @@
 import React from 'react';
-
 import { StyledTitle, StyledAppBar } from './Header.styles';
 import { Toolbar } from '@material-ui/core';
 
