@@ -36,10 +36,10 @@ const Table = ({ columns, rows, size = 'small' }: ITable) => {
           {rows.map((row: any) => {
             return (
               <StyledTableRow
+                key={row.id}
                 data-testid="table-body-row"
                 hover
                 tabIndex={-1}
-                key={row.id}
                 onClick={row.onClick}
               >
                 {columns.map((column: any) => {

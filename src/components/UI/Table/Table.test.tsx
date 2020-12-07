@@ -16,8 +16,9 @@ describe('Table component', () => {
   ];
 
   const MOCK_ROWS = [
-    { field1: 'row 1 value field 1', field2: 'row 1 value field 2' },
+    { id: 1, field1: 'row 1 value field 1', field2: 'row 1 value field 2' },
     {
+      id: 2,
       field1: 'row 2 other value field 1',
       field2: 'row 2 other value field 2',
     },
