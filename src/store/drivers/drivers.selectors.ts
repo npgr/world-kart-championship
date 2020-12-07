@@ -24,8 +24,14 @@ export const selectRaces = createSelector(
 
 export const selectDriverRaces = createSelector(
   [driverStateSelector],
-  ({ driversRaces }) => (driverId: string) =>
-    driversRaces.filter((race) => race.driverId === driverId)
+  ({ driversRaces, races }) => (driverId: string) =>
+    driversRaces
+      .filter((race) => race.driverId === driverId)
+      .map((driverRace) => ({
+        ...driverRace,
+        id: driverRace.raceId,
+        raceName: races.find((race) => race.id === driverRace.raceId)?.name,
+      }))
 );
 
 export const selectIsLoading = createSelector(
