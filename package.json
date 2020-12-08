@@ -32,7 +32,7 @@
   },
   "scripts": {
     "start": "react-scripts start",
-    "start:local": "set REACT_APP_ENV=local && concurrently --kill-others-on-fail \"yarn server\" \"react-scripts start\"",
+    "start:local": "cross-env REACT_APP_ENV=local concurrently --kill-others-on-fail \"yarn server\" \"react-scripts start\"",
     "server": "cd server && yarn start",
     "build": "react-scripts build",
     "build:dev": "react-scripts build",
@@ -71,6 +71,7 @@
   "devDependencies": {
     "@types/redux-mock-store": "^1.0.2",
     "concurrently": "^5.3.0",
+    "cross-env": "^7.0.3",
     "husky": "^4.3.0",
     "prettier": "^2.1.2",
     "redux-devtools-extension": "^2.13.8",
