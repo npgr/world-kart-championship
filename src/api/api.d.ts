@@ -1,4 +1,3 @@
-// delete: example code
 export interface IGetUserParams {
   userId: number;
   fromDate?: Date;
