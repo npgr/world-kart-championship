@@ -31,7 +31,7 @@
     "web-vitals": "^0.2.4"
   },
   "scripts": {
-    "start": "react-scripts start",
+    "start": "yarn start:local",
     "start:local": "cross-env REACT_APP_ENV=local concurrently --kill-others-on-fail \"yarn server\" \"react-scripts start\"",
     "server": "cd server && yarn start",
     "build": "react-scripts build",
