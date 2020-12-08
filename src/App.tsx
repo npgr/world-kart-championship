@@ -1,23 +1,15 @@
 import React, { lazy, Suspense, useEffect, useState } from 'react';
 import { Switch, Route } from 'react-router-dom';
-import { CircularProgress, Backdrop } from '@material-ui/core';
 import { IntlProvider } from 'react-intl';
 import flatten from 'flat';
-
 import ROUTES from './routes';
-import { Header } from './components';
+import Header from './components/Header';
+import { LoadingScreen, PageContainer } from './components/UI';
 import { DEFAULT_LANGUAGE_CODE } from './utils/constants';
 
-const Drivers = lazy(() => import('./pages/Drivers'));
+const Classification = lazy(() => import('./pages/Classification'));
+const Driver = lazy(() => import('./pages/Driver'));
 const NotFound = lazy(() => import('./pages/NotFound'));
-
-const LoadingScreen = () => {
-  return (
-    <Backdrop open invisible>
-      <CircularProgress color="secondary" />
-    </Backdrop>
-  );
-};
 
 function App() {
   const [translations, setTranslations] = useState(null);
@@ -40,14 +32,15 @@ function App() {
       messages={flatten(translations)}
     >
       <Header />
-      <main className="app">
-        <Suspense fallback={LoadingScreen()}>
+      <PageContainer>
+        <Suspense fallback={<LoadingScreen />}>
           <Switch>
-            <Route exact path={ROUTES.HOME} component={Drivers} />
+            <Route exact path={ROUTES.HOME} component={Classification} />
+            <Route exact path={ROUTES.DRIVER} component={Driver} />
             <Route component={NotFound} />
           </Switch>
         </Suspense>
-      </main>
+      </PageContainer>
     </IntlProvider>
   );
 }
