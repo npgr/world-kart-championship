@@ -29,3 +29,7 @@ export function renderWithIntl(
   }
   return rtlRender(ui, { wrapper: Wrapper, ...renderOptions });
 }
+
+export function sleep(ms: number) {
+  return new Promise((resolve) => setTimeout(resolve, ms));
+}
