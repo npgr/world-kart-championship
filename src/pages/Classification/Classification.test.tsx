@@ -1,15 +1,15 @@
 import React from 'react';
+import { Provider } from 'react-redux';
 import { createBrowserHistory } from 'history';
 import { screen } from '@testing-library/react';
 import { renderWithIntl as render } from '../../utils/test-utils';
-import Classification from './Classification';
-import { Provider } from 'react-redux';
 import { ApiIndicator, mockStoreRedux } from '../../store/shared';
 import * as actions from '../../store/drivers/drivers.actions';
 import userEvent from '@testing-library/user-event';
 import { driversDataMockBuilder } from '../../models/fixtures/Drivers';
 import { INITIAL_STATE } from '../../store/drivers/drivers.reducer';
 import ROUTES from '../../routes';
+import Classification from './Classification';
 
 const getDriversSpy = jest.spyOn(actions, 'getDrivers');
 
@@ -38,6 +38,22 @@ describe('Classification page', () => {
     renderClassificationPage({ drivers: INITIAL_STATE });
 
     expect(getDriversSpy).toHaveBeenCalledTimes(1);
+  });
+
+  test('it should renders a Table columns for classification', () => {
+    const MOCK_STATE = {
+      drivers: {
+        ...driversDataMockBuilder(),
+        isLoading: ApiIndicator.Success,
+      },
+    };
+    const { getByRole } = renderClassificationPage(MOCK_STATE);
+
+    const tableHead = getByRole('row', {
+      name: /Pos Name Age Team Points/gi,
+    });
+
+    expect(tableHead).toBeVisible();
   });
 
   test('it should renders a table on data success', () => {

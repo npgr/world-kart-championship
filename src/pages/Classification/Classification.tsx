@@ -53,18 +53,20 @@ const Drivers = ({ history }: IDriversProps) => {
       onClick: () => history.push(ROUTES.DRIVER.replace(':id', driver.id)),
     }));
 
-  return isLoading === ApiIndicator.Start ? (
-    <LoadingScreen />
-  ) : (
+  return (
     <Box display="flex" alignItems="center" flexDirection="column">
       <Typography variant="h6">
         {formatMessage({ id: 'driver.classification' })}
       </Typography>
-      <Box width="45rem">
-        {isLoading === ApiIndicator.Success && (
-          <Table columns={columns} rows={formatTableRows(drivers)} />
-        )}
-      </Box>
+      {isLoading === ApiIndicator.Start ? (
+        <LoadingScreen />
+      ) : (
+        <Box width="45rem">
+          {isLoading === ApiIndicator.Success && (
+            <Table columns={columns} rows={formatTableRows(drivers)} />
+          )}
+        </Box>
+      )}
     </Box>
   );
 };
